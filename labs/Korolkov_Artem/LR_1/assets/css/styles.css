@@ -1,0 +1,264 @@
+/* Домашние рецепты
+   Тёплая «кулинарная тетрадь»: светлый фон, кремовые карточки,
+   терракотовые кнопки и тёмно-зелёные акценты.
+   Сетка, navbar, карточки и формы берутся из Bootstrap.
+   Здесь только свои цвета, шрифт и небольшие правки. */
+
+:root {
+  --bg: #f6f0e6;
+  --card: #fffdf8;
+  --ink: #3b332c;
+  --muted: #6f655c;
+  --line: #e4d8c8;
+  --terracotta: #b5523a;
+  --terracotta-dark: #8f3f2b;
+  --green: #2f5d50;
+  --green-soft: #e7f0ec;
+  --radius: 8px;
+}
+
+body {
+  font-family: system-ui, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 1.75rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  color: var(--green);
+}
+
+a:hover {
+  color: #1e3f36;
+}
+
+/* Шапка */
+
+.site-navbar {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.navbar-brand {
+  color: var(--green);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: #1e3f36;
+}
+
+.brand-note {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.navbar .nav-link {
+  color: var(--ink);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar .nav-link.active {
+  color: var(--green);
+}
+
+.navbar-text {
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* Кнопки Bootstrap красятся через переменные, поэтому меняем их, а не только background */
+
+.btn-primary {
+  --bs-btn-bg: var(--terracotta);
+  --bs-btn-border-color: var(--terracotta);
+  --bs-btn-hover-bg: var(--terracotta-dark);
+  --bs-btn-hover-border-color: var(--terracotta-dark);
+  --bs-btn-active-bg: var(--terracotta-dark);
+  --bs-btn-active-border-color: var(--terracotta-dark);
+  --bs-btn-disabled-bg: var(--terracotta);
+  --bs-btn-disabled-border-color: var(--terracotta);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-color: #fff;
+  --bs-btn-focus-shadow-rgb: 47, 93, 80;
+}
+
+.btn-outline-success {
+  --bs-btn-color: var(--green);
+  --bs-btn-border-color: var(--green);
+  --bs-btn-hover-bg: var(--green);
+  --bs-btn-hover-border-color: var(--green);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: var(--green);
+  --bs-btn-active-border-color: var(--green);
+  --bs-btn-active-color: #fff;
+  --bs-btn-focus-shadow-rgb: 47, 93, 80;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 0.2rem rgba(47, 93, 80, 0.25);
+}
+
+/* Блоки страницы */
+
+.notebook-hero,
+.site-card,
+.recipe-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.notebook-hero {
+  border-left: 4px solid var(--green);
+  padding: 1.25rem 1.5rem;
+}
+
+.stamp {
+  color: var(--green);
+  font-size: 0.92rem;
+}
+
+.recipe-card {
+  overflow: hidden;
+}
+
+.recipe-card:hover {
+  border-color: var(--terracotta);
+}
+
+.recipe-meta,
+.hint,
+.comment-date {
+  color: var(--muted);
+}
+
+.recipe-meta {
+  font-size: 0.92rem;
+}
+
+.recipe-photo {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  background: #efe4d4;
+}
+
+.recipe-photo-large {
+  height: 280px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.photo-fallback {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 1rem;
+  text-align: center;
+  background: #efe4d4;
+  color: var(--green);
+}
+
+.card > .photo-fallback {
+  border-bottom: 1px solid var(--line);
+}
+
+.photo-fallback-large {
+  min-height: 280px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.photo-fallback-mark {
+  font-size: 1.5rem;
+}
+
+.badge-category {
+  background: var(--green-soft);
+  color: var(--green);
+  border: 1px solid #c9ddd4;
+  font-weight: 600;
+}
+
+.badge-difficulty {
+  background: #f8ebe6;
+  color: #8a4634;
+  border: 1px solid #e7cfc6;
+  font-weight: 600;
+}
+
+.results-count {
+  font-weight: 600;
+}
+
+.servings-input {
+  width: 5rem;
+  text-align: center;
+}
+
+.comment-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.list-group-item {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.modal-content {
+  background: var(--card);
+  color: var(--ink);
+}
+
+.site-footer {
+  background: var(--card);
+  border-top: 1px solid var(--line);
+  margin-top: 2rem;
+}
+
+.footer-title {
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 0.25rem;
+}
+
+.site-footer a {
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  text-decoration: underline;
+}

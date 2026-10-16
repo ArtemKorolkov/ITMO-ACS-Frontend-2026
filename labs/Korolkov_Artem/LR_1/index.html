@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Домашние рецепты — личная кулинарная тетрадь с поиском, избранным и своими публикациями.">
+  <title>Домашние рецепты — главная</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="home">
+  <header>
+    <nav class="navbar navbar-expand-lg sticky-top site-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          Домашние рецепты
+          <span class="brand-note">Моя кулинарная коллекция</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Открыть меню">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" data-nav="home" href="index.html">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" data-nav="search" href="search.html">Поиск</a></li>
+            <li class="nav-item"><a class="nav-link" data-nav="profile" href="profile.html">Личный кабинет</a></li>
+            <li class="nav-item d-none" id="navUserItem"><span class="navbar-text" id="navUserName"></span></li>
+            <li class="nav-item"><a class="nav-link" data-nav="login" id="authLink" href="login.html">Вход</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container py-4">
+    <noscript>
+      <p class="alert alert-warning">Для поиска, входа и сохранения рецептов включите JavaScript.</p>
+    </noscript>
+
+    <section class="notebook-hero mb-4">
+      <p class="stamp mb-1">Моя кулинарная коллекция</p>
+      <h1>Домашние рецепты</h1>
+      <p>Добро пожаловать в личную кулинарную тетрадь. Здесь собраны любимые домашние блюда: их можно искать, сохранять и дополнять своими рецептами.</p>
+      <a class="btn btn-primary" href="search.html">Перейти к поиску</a>
+      <p class="stamp mt-3 mb-0">✓ Проверено на домашней кухне</p>
+    </section>
+
+    <section class="mb-4" id="popularSection">
+      <h2>Популярные рецепты</h2>
+      <p class="hint">Карточка открывает подробный рецепт. Кнопка «В избранное» запоминает выбор в этом браузере.</p>
+      <div class="row g-3" id="popularList"></div>
+    </section>
+
+    <section class="mb-4">
+      <h2>Чем удобна тетрадь</h2>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <article class="site-card p-3 h-100">
+            <h3 class="h5">Поиск и фильтры</h3>
+            <p class="mb-0">Ищите по названию, описанию и ингредиенту, затем сужайте список типом блюда и сложностью.</p>
+          </article>
+        </div>
+        <div class="col-md-4">
+          <article class="site-card p-3 h-100">
+            <h3 class="h5">Избранное</h3>
+            <p class="mb-0">Понравившиеся рецепты остаются в браузере после перезагрузки страницы.</p>
+          </article>
+        </div>
+        <div class="col-md-4">
+          <article class="site-card p-3 h-100">
+            <h3 class="h5">Свои записи</h3>
+            <p class="mb-0">Публикация из кабинета сразу появляется в поиске и открывается как обычный рецепт.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-card p-4" id="joinSection">
+      <h2>Присоединяйтесь</h2>
+      <p id="joinText">Зарегистрируйтесь, чтобы открыть личный кабинет и публиковать свои рецепты. Это учебная демонстрация без настоящего сервера.</p>
+      <div class="d-flex flex-wrap gap-2" id="joinActions">
+        <a class="btn btn-primary" href="register.html">Регистрация</a>
+        <a class="btn btn-outline-success" href="login.html">Вход</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="footer-title">Домашние рецепты</p>
+          <p class="stamp mb-1">✓ Проверено на домашней кухне</p>
+          <p class="hint mb-0">Учебный проект. Данные хранятся в браузере и не отправляются на сервер.</p>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-unstyled mb-0">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="search.html">Поиск</a></li>
+            <li><a href="profile.html">Личный кабинет</a></li>
+            <li><a href="login.html">Вход</a></li>
+            <li><a href="register.html">Регистрация</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="assets/js/recipes-data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

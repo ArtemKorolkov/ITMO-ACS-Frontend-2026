@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Поиск домашних рецептов по названию, описанию, ингредиенту, типу блюда и сложности.">
+  <title>Домашние рецепты — поиск</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="search">
+  <header>
+    <nav class="navbar navbar-expand-lg sticky-top site-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          📖 Домашние рецепты
+          <span class="brand-note">Моя кулинарная коллекция</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Открыть меню">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" data-nav="home" href="index.html">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" data-nav="search" href="search.html">Поиск</a></li>
+            <li class="nav-item"><a class="nav-link" data-nav="profile" href="profile.html">Личный кабинет</a></li>
+            <li class="nav-item d-none" id="navUserItem"><span class="navbar-text" id="navUserName"></span></li>
+            <li class="nav-item"><a class="nav-link" data-nav="login" id="authLink" href="login.html">Вход</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container py-4">
+    <noscript>
+      <p class="alert alert-warning">Для фильтрации рецептов включите JavaScript.</p>
+    </noscript>
+
+    <h1>Поиск рецептов</h1>
+    <p class="hint">Найдите блюдо по названию, описанию или ингредиенту. Фильтры работают вместе и не перезагружают страницу.</p>
+
+    <form class="site-card p-3 mb-3" id="searchForm">
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <label class="form-label" for="searchQuery">Название или описание</label>
+          <input class="form-control" type="search" id="searchQuery" placeholder="Например, борщ или яблоко" autocomplete="off">
+        </div>
+        <div class="col-12 col-md-6">
+          <label class="form-label" for="ingredientQuery">Ингредиент</label>
+          <input class="form-control" type="search" id="ingredientQuery" placeholder="Например, творог" autocomplete="off">
+        </div>
+        <div class="col-12 col-md-4">
+          <label class="form-label" for="categoryFilter">Тип блюда</label>
+          <select class="form-select" id="categoryFilter">
+            <option value="all">Все типы</option>
+            <option value="breakfast">Завтрак</option>
+            <option value="salad">Салат</option>
+            <option value="soup">Суп</option>
+            <option value="main">Основное блюдо</option>
+            <option value="dessert">Десерт</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-4">
+          <label class="form-label" for="difficultyFilter">Сложность</label>
+          <select class="form-select" id="difficultyFilter">
+            <option value="all">Любая</option>
+            <option value="easy">Лёгкая</option>
+            <option value="medium">Средняя</option>
+            <option value="hard">Сложная</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-4">
+          <label class="form-label" for="sortSelect">Сортировка</label>
+          <select class="form-select" id="sortSelect">
+            <option value="popularity">По популярности</option>
+            <option value="time-asc">Сначала быстрее</option>
+            <option value="time-desc">Сначала дольше</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-outline-secondary" type="button" id="resetFilters">Сбросить фильтры</button>
+        </div>
+      </div>
+    </form>
+
+    <p class="results-count" id="resultsCount" aria-live="polite"></p>
+    <div class="alert alert-warning d-none" id="emptyState" role="status">Ничего не найдено. Измените запрос или сбросьте фильтры.</div>
+    <div class="row g-3" id="resultsList"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="footer-title">Домашние рецепты</p>
+          <p class="stamp mb-1">✓ Проверено на домашней кухне</p>
+          <p class="hint mb-0">Учебный проект. Данные хранятся в браузере и не отправляются на сервер.</p>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-unstyled mb-0">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="search.html">Поиск</a></li>
+            <li><a href="profile.html">Личный кабинет</a></li>
+            <li><a href="login.html">Вход</a></li>
+            <li><a href="register.html">Регистрация</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="assets/js/recipes-data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/search.js"></script>
+</body>
+</html>

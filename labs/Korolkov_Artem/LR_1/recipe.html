@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Подробный домашний рецепт: ингредиенты, шаги, комментарии и поиск видеоурока.">
+  <title>Домашние рецепты — рецепт</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="recipe">
+  <header>
+    <nav class="navbar navbar-expand-lg sticky-top site-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          📖 Домашние рецепты
+          <span class="brand-note">Моя кулинарная коллекция</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Открыть меню">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" data-nav="home" href="index.html">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" data-nav="search" href="search.html">Поиск</a></li>
+            <li class="nav-item"><a class="nav-link" data-nav="profile" href="profile.html">Личный кабинет</a></li>
+            <li class="nav-item d-none" id="navUserItem"><span class="navbar-text" id="navUserName"></span></li>
+            <li class="nav-item"><a class="nav-link" data-nav="login" id="authLink" href="login.html">Вход</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container py-4">
+    <noscript>
+      <p class="alert alert-warning">Чтобы открыть рецепт по ссылке, включите JavaScript.</p>
+    </noscript>
+
+    <div class="alert alert-warning d-none" id="recipeMissing" role="status">
+      <p class="mb-1">Рецепт не найден. Возможно, ссылка устарела или рецепт был удалён.</p>
+      <p class="mb-2">Запрошенный id: <span id="missingId"></span></p>
+      <a href="search.html">Вернуться к поиску</a>
+    </div>
+
+    <article class="d-none" id="recipeContent">
+      <p class="mb-3"><a href="search.html">← К поиску</a></p>
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div id="recipePhoto"></div>
+          <p class="hint mt-2 mb-0">Фото подобрано для иллюстрации. Если оно не загрузится, останется подпись с названием блюда.</p>
+        </div>
+        <div class="col-lg-7">
+          <p class="stamp mb-1">✓ Проверено на домашней кухне</p>
+          <h1 id="recipeTitle"></h1>
+          <p id="recipeAuthor"></p>
+          <div class="mb-2">
+            <span class="badge badge-category me-1" id="recipeCategory"></span>
+            <span class="badge badge-difficulty" id="recipeDifficulty"></span>
+          </div>
+          <p class="recipe-meta" id="recipeMeta"></p>
+          <p id="recipeDescription"></p>
+          <p id="recipePopularity"></p>
+          <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-primary" type="button" id="likeButton">Нравится</button>
+            <button class="btn btn-outline-success" type="button" id="favoriteButton">В избранное</button>
+            <button class="btn btn-outline-secondary" type="button" id="subscribeButton">Подписаться на автора</button>
+          </div>
+          <p class="hint mt-2 mb-0" id="subscribeStatus"></p>
+        </div>
+      </div>
+
+      <section class="mt-4">
+        <h2>Ингредиенты</h2>
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+          <span>Порции:</span>
+          <button class="btn btn-outline-secondary" type="button" id="servingsMinus" aria-label="Уменьшить число порций">−</button>
+          <input class="form-control servings-input" type="number" id="servingsInput" min="1" max="24" value="1">
+          <button class="btn btn-outline-secondary" type="button" id="servingsPlus" aria-label="Увеличить число порций">+</button>
+        </div>
+        <ul class="list-group" id="ingredientList"></ul>
+      </section>
+
+      <section class="mt-4">
+        <h2>Шаги приготовления</h2>
+        <ol class="list-group list-group-numbered" id="stepList"></ol>
+      </section>
+
+      <section class="mt-4">
+        <h2>Видеоурок</h2>
+        <p>Отдельного видеофайла в проекте нет. Ссылка открывает поиск YouTube по названию этого рецепта в новой вкладке.</p>
+        <a class="btn btn-outline-success" id="videoLink" href="https://www.youtube.com/results?search_query=%D0%B4%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D0%B8%D0%B5+%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D1%8B" target="_blank" rel="noopener noreferrer">Найти видеоурок на YouTube</a>
+      </section>
+
+      <section class="mt-4">
+        <h2>Комментарии</h2>
+        <div class="alert d-none" id="commentAlert" role="status"></div>
+        <form class="mb-3" id="commentForm" novalidate>
+          <label class="form-label" for="commentText">Ваш комментарий</label>
+          <textarea class="form-control" id="commentText" rows="3" maxlength="500"></textarea>
+          <div class="invalid-feedback" id="commentError">Введите текст комментария.</div>
+          <button class="btn btn-primary mt-2" type="submit">Добавить комментарий</button>
+        </form>
+        <p class="d-none" id="commentsEmpty">Комментариев пока нет. Напишите первый.</p>
+        <ul class="list-unstyled" id="commentList"></ul>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="footer-title">Домашние рецепты</p>
+          <p class="stamp mb-1">✓ Проверено на домашней кухне</p>
+          <p class="hint mb-0">Учебный проект. Данные хранятся в браузере и не отправляются на сервер.</p>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-unstyled mb-0">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="search.html">Поиск</a></li>
+            <li><a href="profile.html">Личный кабинет</a></li>
+            <li><a href="login.html">Вход</a></li>
+            <li><a href="register.html">Регистрация</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="assets/js/recipes-data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/recipe.js"></script>
+</body>
+</html>
