@@ -1,0 +1,350 @@
+/* Домашние рецепты
+   Тёплая «кулинарная тетрадь»: светлый фон, кремовые карточки,
+   терракотовые кнопки и тёмно-зелёные акценты.
+   Сетка, navbar, карточки и формы берутся из Bootstrap.
+   Здесь только свои цвета, шрифт и небольшие правки. */
+
+:root {
+  /* Цвета задают assets/css/themes/light.css и dark.css.
+     Bootstrap подключается позже файла темы и затирает --bs-body-color своим #212529.
+     Здесь, уже после Bootstrap, снова связываем его с --ink, иначе текст карточек остаётся тёмным. */
+  --radius: 8px;
+  --bs-body-color: var(--ink);
+  --bs-body-bg: var(--bg);
+  --bs-heading-color: var(--ink);
+  --bs-emphasis-color: var(--ink);
+  --bs-secondary-color: var(--muted);
+  --bs-card-color: var(--ink);
+  --bs-card-title-color: var(--ink);
+  --bs-card-subtitle-color: var(--muted);
+  --bs-card-bg: var(--card);
+  --bs-card-cap-color: var(--ink);
+}
+
+body {
+  font-family: system-ui, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 1.75rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  color: var(--green);
+}
+
+a:hover {
+  color: var(--green-dark);
+}
+
+/* Ссылка видна только с клавиатуры: так проверяют обход страницы без мыши */
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  z-index: 1080;
+  padding: 0.45rem 0.75rem;
+  background: var(--card);
+  color: var(--ink);
+  border: 2px solid var(--green);
+  border-radius: var(--radius);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* Шапка */
+
+.site-navbar {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.navbar-brand {
+  color: var(--green);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: var(--green-dark);
+}
+
+.brand-note {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.navbar .nav-link {
+  color: var(--ink);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar .nav-link.active {
+  color: var(--green);
+}
+
+.navbar-text {
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* Кнопки Bootstrap красятся через переменные, поэтому меняем их, а не только background */
+
+.btn-primary {
+  --bs-btn-bg: var(--terracotta);
+  --bs-btn-border-color: var(--terracotta);
+  --bs-btn-hover-bg: var(--terracotta-dark);
+  --bs-btn-hover-border-color: var(--terracotta-dark);
+  --bs-btn-active-bg: var(--terracotta-dark);
+  --bs-btn-active-border-color: var(--terracotta-dark);
+  --bs-btn-disabled-bg: var(--terracotta);
+  --bs-btn-disabled-border-color: var(--terracotta);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-color: #fff;
+  --bs-btn-focus-shadow-rgb: 47, 93, 80;
+}
+
+.btn-outline-success {
+  --bs-btn-color: var(--green);
+  --bs-btn-border-color: var(--green);
+  --bs-btn-hover-bg: var(--green);
+  --bs-btn-hover-border-color: var(--green);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: var(--green);
+  --bs-btn-active-border-color: var(--green);
+  --bs-btn-active-color: #fff;
+  --bs-btn-focus-shadow-rgb: 47, 93, 80;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 0.2rem rgba(47, 93, 80, 0.25);
+}
+
+/* Блоки страницы */
+
+.notebook-hero,
+.site-card,
+.recipe-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.notebook-hero {
+  border-left: 4px solid var(--green);
+  padding: 1.25rem 1.5rem;
+}
+
+.stamp {
+  color: var(--green);
+  font-size: 0.92rem;
+}
+
+.recipe-card {
+  overflow: hidden;
+  color: var(--ink);
+}
+
+.recipe-card .card-title,
+.recipe-card .card-text,
+#recipeDescription,
+#recipeAuthor,
+#recipeWeather {
+  color: var(--ink);
+}
+
+.recipe-card:hover {
+  border-color: var(--terracotta);
+}
+
+.recipe-meta,
+.hint,
+.comment-date {
+  color: var(--muted);
+}
+
+.recipe-meta {
+  font-size: 0.92rem;
+}
+
+.recipe-photo {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  background: var(--photo);
+}
+
+.recipe-photo-large {
+  height: 280px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.photo-fallback {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 1rem;
+  text-align: center;
+  background: var(--photo);
+  color: var(--green);
+}
+
+.card > .photo-fallback {
+  border-bottom: 1px solid var(--line);
+}
+
+.photo-fallback-large {
+  min-height: 280px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.photo-fallback-mark {
+  font-size: 1.5rem;
+}
+
+.badge-category {
+  background: var(--green-soft);
+  color: var(--badge-category-text);
+  border: 1px solid var(--badge-category-border);
+  font-weight: 600;
+}
+
+.badge-difficulty {
+  background: var(--badge-difficulty-bg);
+  color: var(--badge-difficulty-text);
+  border: 1px solid var(--badge-difficulty-border);
+  font-weight: 600;
+}
+
+.form-control,
+.form-select,
+.list-group-item,
+.modal-content {
+  background-color: var(--card);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.form-control::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.alert-secondary {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.nav-theme {
+  margin-top: 0.35rem;
+}
+
+@media (min-width: 992px) {
+  .nav-theme {
+    margin-top: 0;
+    margin-right: 0.5rem;
+  }
+}
+
+.results-count {
+  font-weight: 600;
+}
+
+.servings-input {
+  width: 5rem;
+  text-align: center;
+}
+
+.comment-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.list-group-item {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.modal-content {
+  background: var(--card);
+  color: var(--ink);
+}
+
+.site-footer {
+  background: var(--card);
+  border-top: 1px solid var(--line);
+  margin-top: 2rem;
+}
+
+.footer-title {
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 0.25rem;
+}
+
+.site-footer a {
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  text-decoration: underline;
+}
+
+/* Блок «Меню на сегодня» использует те же карточки и цвета */
+
+.weather-icon {
+  width: 3.5rem;
+  margin: 0;
+  font-size: 2.5rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.recipe-card-clickable {
+  cursor: pointer;
+}
+
+#cityChoices .list-group-item {
+  text-align: left;
+}

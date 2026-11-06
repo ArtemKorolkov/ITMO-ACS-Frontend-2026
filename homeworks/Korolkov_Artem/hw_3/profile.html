@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="assets/js/theme-init.js"></script>
+  <meta name="description" content="Личный кабинет «Домашние рецепты»: избранное, свои публикации и имя пользователя.">
+  <title>Домашние рецепты — личный кабинет</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="profile">
+  <a class="skip-link" href="#main-content">К содержанию</a>
+  <header>
+    <nav class="navbar navbar-expand-lg sticky-top site-navbar" aria-label="Основное меню">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <span aria-hidden="true"></span> Домашние рецепты
+          <span class="brand-note">Моя кулинарная коллекция</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Открыть меню">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" data-nav="home" href="index.html">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" data-nav="search" href="search.html">Поиск</a></li>
+            <li class="nav-item"><a class="nav-link" data-nav="profile" href="profile.html">Личный кабинет</a></li>
+            <li class="nav-item d-none" id="navUserItem"><span class="navbar-text" id="navUserName"></span></li>
+            <li class="nav-item"><button class="btn btn-outline-success btn-sm nav-theme" type="button" id="themeToggle" aria-pressed="false">Тёмная тема</button></li>
+            <li class="nav-item"><a class="nav-link" data-nav="login" id="authLink" href="login.html">Вход</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container py-4" id="main-content" tabindex="-1">
+    <noscript>
+      <p class="alert alert-warning">Личный кабинет работает только с включённым JavaScript.</p>
+    </noscript>
+
+    <div class="alert d-none" id="noticeAlert" role="status"></div>
+
+    <section class="site-card p-4 d-none" id="guestBlock">
+        <h1 class="h3" id="guest-title">Личный кабинет</h1>
+        <p>Вы ещё не вошли. Аккаунт создаётся на локальном JSON Server и подтверждается токеном.</p>
+      <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-primary" href="login.html">Войти</a>
+        <a class="btn btn-outline-success" href="register.html">Регистрация</a>
+      </div>
+    </section>
+
+    <section class="d-none" id="userBlock">
+      <div class="site-card p-4 mb-4">
+        <h1 class="h3" id="profile-title">Личный кабинет</h1>
+        <p class="mb-1">Имя: <strong id="profileName"></strong></p>
+        <p>Email: <strong id="profileEmail"></strong></p>
+        <p class="hint">Имя и email показаны из сохранённой сессии. Избранное и публикации читаются с сервера. Выход удаляет токен из этого браузера.</p>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#editNameModal">Изменить имя</button>
+          <button class="btn btn-outline-secondary" type="button" id="logoutButton">Выйти</button>
+        </div>
+      </div>
+
+      <section class="mb-4">
+        <h2 id="favorites-title">Сохранённые рецепты</h2>
+        <p class="results-count" id="favoritesCount"></p>
+        <p class="d-none" id="favoritesEmpty">Вы ещё ничего не сохранили. Перейдите к <a href="search.html">поиску</a> и нажмите «В избранное».</p>
+        <div class="row g-3" id="favoritesList"></div>
+      </section>
+
+      <section class="mb-4">
+        <h2 id="publications-title">Мои публикации</h2>
+        <p class="d-none" id="publicationsEmpty">Публикаций пока нет. Добавьте свой рецепт формой ниже.</p>
+        <div class="row g-3 mb-3" id="publicationsList"></div>
+
+        <form class="site-card p-4" id="publicationForm" novalidate aria-labelledby="publication-form-title">
+          <h3 class="h5" id="publication-form-title">Новая публикация</h3>
+          <p class="hint">После сохранения рецепт появится в поиске и откроется на странице рецепта. Запись хранится в JSON Server.</p>
+          <div class="alert d-none" id="publicationAlert" role="alert"></div>
+          <p class="mb-3"><a class="d-none" id="publicationOpenLink" href="recipe.html">Открыть опубликованный рецепт</a></p>
+
+          <div class="mb-3">
+            <label class="form-label" for="pubTitle">Название</label>
+            <input class="form-control" type="text" id="pubTitle" maxlength="80" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="pubDescription">Описание</label>
+            <textarea class="form-control" id="pubDescription" rows="3" required></textarea>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="pubCategory">Тип блюда</label>
+              <select class="form-select" id="pubCategory">
+                <option value="breakfast">Завтрак</option>
+                <option value="salad">Салат</option>
+                <option value="soup">Суп</option>
+                <option value="main">Основное блюдо</option>
+                <option value="dessert">Десерт</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="pubDifficulty">Сложность</label>
+              <select class="form-select" id="pubDifficulty">
+                <option value="easy">Лёгкая</option>
+                <option value="medium">Средняя</option>
+                <option value="hard">Сложная</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="pubTime">Время, минуты</label>
+              <input class="form-control" type="number" id="pubTime" min="1" max="600" value="30" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="pubServings">Порции</label>
+              <input class="form-control" type="number" id="pubServings" min="1" max="24" value="2" required>
+            </div>
+          </div>
+          <div class="mb-3 mt-3">
+            <label class="form-label" for="pubIngredients">Ингредиенты</label>
+            <textarea class="form-control" id="pubIngredients" rows="5" placeholder="мука; 200; г" aria-describedby="pubIngredientsHint"></textarea>
+            <p class="hint mb-0" id="pubIngredientsHint">Каждый ингредиент с новой строки: название; количество; единица. Пример: мука; 200; г. Если количество не нужно, укажите 0, например: соль; 0; по вкусу.</p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="pubSteps">Шаги</label>
+            <textarea class="form-control" id="pubSteps" rows="5" placeholder="Смешайте продукты." aria-describedby="pubStepsHint"></textarea>
+            <p class="hint mb-0" id="pubStepsHint">Каждый шаг с новой строки.</p>
+          </div>
+          <fieldset class="mb-3" aria-describedby="weatherTagsHint">
+            <legend class="form-label mb-2">Погодные теги, необязательно</legend>
+            <div class="row g-2">
+              <div class="col-sm-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="tagCold" name="weatherTag" value="cold">
+                  <label class="form-check-label" for="tagCold">Холодная погода</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="tagRainy" name="weatherTag" value="rainy">
+                  <label class="form-check-label" for="tagRainy">Дождливая погода</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="tagHot" name="weatherTag" value="hot">
+                  <label class="form-check-label" for="tagHot">Жаркая погода</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="tagSunny" name="weatherTag" value="sunny">
+                  <label class="form-check-label" for="tagSunny">Ясная и солнечная погода</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="tagSnowy" name="weatherTag" value="snowy">
+                  <label class="form-check-label" for="tagSnowy">Снежная погода</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="tagAny" name="weatherTag" value="any">
+                  <label class="form-check-label" for="tagAny">Любая погода</label>
+                </div>
+              </div>
+            </div>
+            <p class="hint mb-0" id="weatherTagsHint">Если ничего не выбрать, рецепт получит метку «любая погода».</p>
+          </fieldset>
+          <div class="mb-3">
+            <label class="form-label" for="pubImage">Ссылка на фото, необязательно</label>
+            <input class="form-control" type="url" id="pubImage" placeholder="https://...">
+          </div>
+          <button class="btn btn-primary" type="submit">Опубликовать</button>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <div class="modal fade" id="editNameModal" tabindex="-1" aria-labelledby="editNameTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="editNameTitle">Изменить имя</h2>
+          <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <label class="form-label" for="newNameInput">Новое имя</label>
+          <input class="form-control" type="text" id="newNameInput" maxlength="40" aria-describedby="newNameError">
+          <div class="invalid-feedback" id="newNameError">Введите имя от 2 до 40 символов.</div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal">Отмена</button>
+          <button class="btn btn-primary" type="button" id="saveNameBtn">Сохранить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="footer-title">Домашние рецепты</p>
+          <p class="stamp mb-1">✓ Проверено на домашней кухне</p>
+          <p class="hint mb-0">Учебный проект. Рецепты и аккаунты хранит локальный JSON Server, погоду отдаёт Open-Meteo.</p>
+        </div>
+        <nav class="col-md-6" aria-label="Навигация в подвале">
+          <ul class="list-unstyled mb-0">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="search.html">Поиск</a></li>
+            <li><a href="profile.html">Личный кабинет</a></li>
+            <li><a href="login.html">Вход</a></li>
+            <li><a href="register.html">Регистрация</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/recipes-data.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/profile.js"></script>
+</body>
+</html>
