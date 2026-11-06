@@ -1,0 +1,13 @@
+{
+  "name": "domashnie-recepty",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Учебный сайт «Домашние рецепты»: JSON Server, JSON Server Auth и Open-Meteo",
+  "scripts": {
+    "start:api": "json-server-auth server/db.json --routes server/routes.json --port 3000 --watch --middlewares server/owner-filter.js"
+  },
+  "dependencies": {
+    "json-server": "0.17.4",
+    "json-server-auth": "2.1.0"
+  }
+}
