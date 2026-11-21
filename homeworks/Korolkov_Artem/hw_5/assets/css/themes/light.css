@@ -1,0 +1,30 @@
+/* Светлая тема «кулинарной тетради».
+   Здесь только переменные. Размеры и сетка остаются в styles.css. */
+
+:root {
+  color-scheme: light;
+  --bg: #f6f0e6;
+  --card: #fffdf8;
+  --ink: #3b332c;
+  --muted: #4e453e;
+  --line: #e4d8c8;
+  --terracotta: #8f3f2b;
+  --terracotta-dark: #703021;
+  --green: #1f4a3e;
+  --green-dark: #16382f;
+  --green-soft: #e7f0ec;
+  --photo: #efe4d4;
+  --badge-category-text: #16382f;
+  --badge-category-border: #9db8ad;
+  --badge-difficulty-bg: #f8ebe6;
+  --badge-difficulty-text: #6d3324;
+  --badge-difficulty-border: #e7cfc6;
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--ink);
+  --bs-heading-color: var(--ink);
+  --bs-secondary-color: var(--muted);
+  --bs-tertiary-bg: var(--card);
+  --bs-border-color: var(--line);
+  --bs-link-color: var(--green);
+  --bs-link-hover-color: var(--green-dark);
+}

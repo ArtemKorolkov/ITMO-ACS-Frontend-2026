@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <symbol id="book" viewBox="0 0 24 24">
+    <path d="M5 5.5A2.5 2.5 0 0 1 7.5 3H18v15H7.5A2.5 2.5 0 0 0 5 20.5z"/>
+    <path d="M5 20.5A2.5 2.5 0 0 1 7.5 18H18"/>
+    <path d="M8 7h6M8 11h6"/>
+  </symbol>
+  <symbol id="search" viewBox="0 0 24 24">
+    <circle cx="11" cy="11" r="6"/>
+    <path d="M16 16l4 4"/>
+  </symbol>
+  <symbol id="user" viewBox="0 0 24 24">
+    <circle cx="12" cy="8" r="3.2"/>
+    <path d="M5.5 19.5c1.2-3 3.4-4.5 6.5-4.5s5.3 1.5 6.5 4.5"/>
+  </symbol>
+  <symbol id="heart" viewBox="0 0 24 24">
+    <path d="M12 19.2l-1.1-1C6.4 14.1 4 11.9 4 9.2 4 7 5.7 5.3 7.9 5.3c1.3 0 2.5.6 3.1 1.6.6-1 1.8-1.6 3.1-1.6 2.2 0 3.9 1.7 3.9 3.9 0 2.7-2.4 4.9-6.9 9z"/>
+  </symbol>
+  <symbol id="sun" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="3.4"/>
+    <path d="M12 3.5v2.2M12 18.3v2.2M3.5 12h2.2M18.3 12h2.2M6 6l1.6 1.6M16.4 16.4L18 18M18 6l-1.6 1.6M7.6 16.4L6 18"/>
+  </symbol>
+</svg>

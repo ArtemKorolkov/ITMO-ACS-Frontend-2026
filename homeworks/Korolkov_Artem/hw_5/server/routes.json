@@ -1,0 +1,9 @@
+{
+  "/users*": "/600/users$1",
+  "/recipes*": "/444/recipes$1",
+  "/publications*": "/644/publications$1",
+  "/favorites*": "/600/favorites$1",
+  "/comments*": "/644/comments$1",
+  "/likes*": "/600/likes$1",
+  "/subscriptions*": "/600/subscriptions$1"
+}

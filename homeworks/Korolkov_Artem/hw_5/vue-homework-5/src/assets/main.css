@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  font-family: system-ui, "Segoe UI", sans-serif;
+  background: #f6f0e6;
+  color: #3b332c;
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.welcome {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #fffdf8;
+  border: 1px solid #e4d8c8;
+  border-radius: 8px;
+}
+
+.stamp {
+  margin: 0 0 8px;
+  color: #1f4a3e;
+  font-size: 14px;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+a {
+  color: #8f3f2b;
+}

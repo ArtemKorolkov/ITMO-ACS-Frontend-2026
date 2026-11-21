@@ -1,0 +1,37 @@
+/* Тёмная тема. Те же имена переменных, другие цвета.
+   Кнопки остаются достаточно тёмными, чтобы белый текст читался. */
+
+:root {
+  color-scheme: dark;
+  --bg: #241f1b;
+  --card: #322b26;
+  --ink: #f6f0e6;
+  --muted: #d2c3b4;
+  --line: #5c5148;
+  --terracotta: #9a4632;
+  --terracotta-dark: #7a3524;
+  --green: #9dcebc;
+  --green-dark: #d7f3e8;
+  --green-soft: #243832;
+  --photo: #4a4038;
+  --badge-category-text: #d7f3e8;
+  --badge-category-border: #3e6b5c;
+  --badge-difficulty-bg: #4a332c;
+  --badge-difficulty-text: #f6d7cc;
+  --badge-difficulty-border: #7a564c;
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--ink);
+  --bs-heading-color: var(--ink);
+  --bs-secondary-color: var(--muted);
+  --bs-tertiary-bg: var(--card);
+  --bs-border-color: var(--line);
+  --bs-link-color: var(--green);
+  --bs-link-hover-color: var(--green-dark);
+  --bs-navbar-color: var(--ink);
+  --bs-navbar-hover-color: var(--green);
+  --bs-navbar-active-color: var(--green);
+}
+
+.navbar-toggler-icon {
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28246, 240, 230, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
